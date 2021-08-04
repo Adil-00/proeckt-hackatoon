@@ -1,66 +1,28 @@
 {
   "shop": [
     {
-      "Name": "asd",
-      "LastName": "asd",
-      "Age": "asd",
+      "title": "гантель",
+      "image": "https://www.proball.ru/upload/images/35903628/79aa99d4899ab9f82c4173e662bd3f9c_1000_1000.jpg",
+      "category": "снаряды",
+      "description": "старые но мощные ",
+      "price": "500",
       "id": 1
     },
     {
-      "Name": "asd",
-      "LastName": "asd",
-      "Age": "asd",
+      "category": "снаряды",
+      "title": "штанга",
+      "image": "https://im0-tub-ru.yandex.net/i?id=10e49234bb22b0f9355202aab75a0a11&n=13",
+      "description": "атлетические",
+      "price": "9000",
       "id": 2
     },
     {
-      "Name": "das",
-      "LastName": "dsa",
-      "Age": "dasd",
+      "title": "футболка",
+      "image": "https://mdmgifts.ru/storage/app/media/sync/oasiscatalog/original/bbbb92ec28d85900.jpg",
+      "category": "футболки",
+      "description": "желтая XS, S, M, L, XL",
+      "price": "350",
       "id": 3
-    },
-    {
-      "Age": "",
-      "id": 4
-    },
-    {
-      "Age": "",
-      "id": 5
-    },
-    {
-      "Age": "",
-      "id": 6
-    },
-    {
-      "Name": "asdasd",
-      "LastName": "asdasd",
-      "Age": "123123",
-      "id": 7
-    },
-    {
-      "Name": "asdasd",
-      "LastName": "asdasd",
-      "Age": "123123",
-      "id": 8
-    },
-    {
-      "Name": "asdasd",
-      "LastName": "asdasd",
-      "Age": "123123123",
-      "id": 9
-    },
-    {
-      "Name": "",
-      "LastName": "",
-      "Age": "",
-      "id": 10
-    },
-    {
-      "id": 11
-    },
-    {
-      "Name": "asd",
-      "LastName": "asd",
-      "id": 12
     }
   ]
 }
