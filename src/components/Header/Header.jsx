@@ -15,6 +15,10 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useContext } from "react";
+import { shopContext } from "../../context/ShopContext";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -81,13 +85,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Header() {
+  const history = useHistory();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  const [eventVal, setEventVal] = useState("");
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const { getShop } = useContext(shopContext);
 
+  const heandleSerch = (e) => {
+    let search = new URLSearchParams(history.location.search);
+    search.set("q", e.target.value);
+    history.push(`${history.location.pathname}?${search.toString()}`);
+    console.log(history.location.pathname);
+    setEventVal(e.target.value);
+    getShop();
+  };
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -182,6 +196,8 @@ export default function Header() {
               <SearchIcon />
             </div>
             <InputBase
+              onChange={heandleSerch}
+              value={eventVal}
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,

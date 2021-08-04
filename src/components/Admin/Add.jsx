@@ -54,25 +54,37 @@ export default function Add() {
     <form className={classes.root} noValidate autoComplete="off">
       <Paper elevation={10} className={classes.Paper}>
         <TextField
-          value={inpValue.Name}
-          name="Name"
+          value={inpValue.title}
+          name="title"
           onChange={handleChange}
-          label="Name"
+          label="Title"
           multiline
         />
         <TextField
-          value={inpValue.LastName}
-          name="LastName"
+          value={inpValue.image}
+          name="image"
           onChange={handleChange}
-          label="LastName"
+          label="Image"
           multiline
         />
         <TextField
-          value={inpValue.Age}
-          name="Age"
+          value={inpValue.category}
+          name="category"
+          onChange={handleChange}
+          label="Category"
+        />
+        <TextField
+          value={inpValue.description}
+          name="description"
+          onChange={handleChange}
+          label="Description"
+        />
+        <TextField
+          value={inpValue.price}
+          name="price"
           type="number"
           onChange={handleChange}
-          label="Age"
+          label="Price"
         />
         <ButtonGroup color="primary" aria-label="outlined primary button group">
           <Link to="/" style={{ textDecoration: "none" }}>
