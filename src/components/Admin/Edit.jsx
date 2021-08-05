@@ -5,7 +5,7 @@ import { Button, ButtonGroup, Paper } from "@material-ui/core";
 import { useState } from "react";
 import { useContext } from "react";
 import { shopContext } from "../../context/ShopContext";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,7 +39,7 @@ export default function Edit() {
   const { edit, saveShop } = useContext(shopContext);
   const classes = useStyles();
   const [inpValue, setInpValue] = useState("");
-
+  const history = useHistory();
   useEffect(() => {
     setInpValue(edit);
   }, [edit]);
@@ -54,7 +54,7 @@ export default function Edit() {
   };
   console.log(inpValue.id);
   const handleEdit = () => {
-    saveShop(inpValue, inpValue.id);
+    saveShop(inpValue, inpValue.id, history);
 
     setInpValue({
       title: "",

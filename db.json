@@ -1,14 +1,6 @@
 {
   "shop": [
     {
-      "title": "гантель",
-      "image": "https://www.proball.ru/upload/images/35903628/79aa99d4899ab9f82c4173e662bd3f9c_1000_1000.jpg",
-      "category": "снаряды",
-      "description": "старые но мощные ",
-      "price": "500",
-      "id": 1
-    },
-    {
       "category": "снаряды",
       "title": "штанга",
       "image": "https://im0-tub-ru.yandex.net/i?id=10e49234bb22b0f9355202aab75a0a11&n=13",
@@ -23,6 +15,14 @@
       "description": "желтая XS, S, M, L, XL",
       "price": "350",
       "id": 3
+    },
+    {
+      "title": "коньки",
+      "image": "https://images.ru.prom.st/824933679_w640_h640_konki-40-razmer.jpg",
+      "category": "зимний",
+      "description": "37,38,39.",
+      "price": "2500",
+      "id": 4
     }
   ]
 }

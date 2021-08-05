@@ -97,10 +97,10 @@ export default function Header() {
   const heandleSerch = (e) => {
     let search = new URLSearchParams(history.location.search);
     search.set("q", e.target.value);
+    search.set("_page", 1);
     history.push(`${history.location.pathname}?${search.toString()}`);
-    console.log(history.location.pathname);
     setEventVal(e.target.value);
-    getShop();
+    getShop(history);
   };
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);

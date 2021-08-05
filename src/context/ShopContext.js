@@ -1,19 +1,29 @@
+import Mail from "@material-ui/icons/Mail";
 import axios from "axios";
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import { API } from "../Helpers/constans";
 export const shopContext = React.createContext();
 
 const INIT_STATE = {
   shops: [],
   edit: [],
+  pagination: 1,
 };
 
 const reduce = (state = INIT_STATE, action) => {
   switch (action.type) {
     case "GET_SHOP":
-      return { ...state, shops: action.payload };
+      return {
+        ...state,
+        shops: action.payload.data,
+        pagination: Math.ceil(action.payload.headers["x-total-count"] / 1),
+      };
+
     case "SHOP_EDIT":
-      return { ...state, edit: action.payload };
+      return {
+        ...state,
+        edit: action.payload,
+      };
     default:
       return state;
   }
@@ -22,8 +32,12 @@ const reduce = (state = INIT_STATE, action) => {
 const ShopContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reduce, INIT_STATE);
 
-  const getShop = async () => {
-    const { data } = await axios(`${API}/shop/${window.location.search}`);
+  const getShop = async (history) => {
+    const search = new URLSearchParams(history.location.search);
+    search.set("_limit", 1);
+    history.push(`${history.location.pathname}?${search.toString()}`);
+
+    let data = await axios(`${API}/shop${window.location.search}`);
 
     dispatch({
       type: "GET_SHOP",
@@ -31,15 +45,16 @@ const ShopContextProvider = ({ children }) => {
     });
   };
 
-  const shopAdd = async (newObj) => {
+  const shopAdd = async (newObj, history) => {
     await axios.post(`${API}/shop`, newObj);
-    console.log(newObj);
-    getShop();
+
+    getShop(history);
   };
 
-  const deleteShop = async (id) => {
+  const deleteShop = async (id, history) => {
     await axios.delete(`${API}/shop/${id}`);
-    getShop();
+
+    getShop(history);
   };
 
   const editShop = async (id) => {
@@ -51,16 +66,17 @@ const ShopContextProvider = ({ children }) => {
     });
   };
 
-  const saveShop = async (newObj, id) => {
+  const saveShop = async (newObj, id, history) => {
     await axios.patch(`${API}/shop/${id}`, newObj);
-    getShop();
+    getShop(history);
   };
 
   return (
     <shopContext.Provider
       value={{
-        shop: state.shops,
+        shops: state.shops,
         edit: state.edit,
+        pagination: state.pagination,
         shopAdd,
         getShop,
         deleteShop,
