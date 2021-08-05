@@ -13,6 +13,8 @@ import { IconButton } from "@material-ui/core";
 import { useContext } from "react";
 import { shopContext } from "../../context/ShopContext";
 import { Link } from "react-router-dom";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import { userContext } from "../../context/UserContext";
 
 const useStyles = makeStyles({
   root: {
@@ -28,6 +30,8 @@ const useStyles = makeStyles({
 export default function ShopCard({ item }) {
   const classes = useStyles();
   const { deleteShop, editShop } = useContext(shopContext);
+  const { addAndDeleteProductsInCart, checkProductInCart } =
+    useContext(userContext);
 
   return (
     <Card elevation={10} className={classes.root}>
@@ -63,6 +67,13 @@ export default function ShopCard({ item }) {
         </Link>
         <IconButton onClick={() => deleteShop(item.id)}>
           <DeleteIcon />
+        </IconButton>
+        <IconButton
+          variant="contained"
+          color={checkProductInCart(item.id) ? "secondary" : "primary"}
+          onClick={() => addAndDeleteProductsInCart(item)}
+        >
+          <AddShoppingCartIcon />
         </IconButton>
       </CardActions>
     </Card>

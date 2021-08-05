@@ -16,9 +16,10 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useContext } from "react";
 import { shopContext } from "../../context/ShopContext";
+import { userContext } from "../../context/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -75,6 +76,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       display: "flex",
     },
+    color: "white",
   },
   sectionMobile: {
     display: "flex",
@@ -93,6 +95,7 @@ export default function Header() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const { getShop } = useContext(shopContext);
+  const { productsCountInCart } = useContext(userContext);
 
   const heandleSerch = (e) => {
     let search = new URLSearchParams(history.location.search);
@@ -175,7 +178,7 @@ export default function Header() {
       </MenuItem>
     </Menu>
   );
-
+  console.log(productsCountInCart);
   return (
     <div className={classes.grow}>
       <AppBar position="static">
@@ -189,7 +192,7 @@ export default function Header() {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+            McLaren's Shop
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -208,11 +211,13 @@ export default function Header() {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge color="secondary">
-                <ShoppingCartIcon />
-              </Badge>
-            </IconButton>
+            <Link to="/cart">
+              <IconButton className={classes.sectionDesktop}>
+                <Badge badgeContent={productsCountInCart} color="secondary">
+                  <ShoppingCartIcon />
+                </Badge>
+              </IconButton>
+            </Link>
             <IconButton
               edge="end"
               aria-label="account of current user"
