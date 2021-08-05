@@ -5,7 +5,7 @@ import { Button, ButtonGroup, Paper } from "@material-ui/core";
 import { useState } from "react";
 import { useContext } from "react";
 import { shopContext } from "../../context/ShopContext";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,7 +30,7 @@ export default function Add() {
   const { shopAdd } = useContext(shopContext);
   const classes = useStyles();
   const [inpValue, setInpValue] = useState("");
-
+  const history = useHistory();
   const handleChange = (e) => {
     let obj = {
       ...inpValue,
@@ -41,7 +41,7 @@ export default function Add() {
   };
 
   const handleAdd = () => {
-    shopAdd(inpValue);
+    shopAdd(inpValue, history);
 
     setInpValue({
       Name: "",

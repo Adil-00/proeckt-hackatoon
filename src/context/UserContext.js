@@ -98,6 +98,9 @@ const UserContextProvider = ({ children }) => {
   }
 
   function changeCountProductsInCart(count, id) {
+    if (count < 0) {
+      count = 1;
+    }
     let cart = JSON.parse(localStorage.getItem("cart"));
     cart.products = cart.products.map((item) => {
       if (item.product.id === id) {

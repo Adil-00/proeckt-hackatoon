@@ -4,6 +4,9 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { shopContext } from "../../context/ShopContext";
 import ShopCard from "../ShopCard.jsx/ShopCard";
+import { Pagination } from "@material-ui/lab";
+import { useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,26 +24,65 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "space-evenly",
   },
+
+  pagination: {
+    display: "flex",
+    justifyContent: "center",
+    margin: "5vh",
+  },
 }));
 
 const ShopList = () => {
-  const { shop, getShop } = useContext(shopContext);
+  let history = useHistory();
+  const params = useParams();
+  const { shops, getShop, pagination } = useContext(shopContext);
   const classes = useStyles();
+  const [page, setPage] = useState(getPage());
 
   useEffect(() => {
-    getShop();
+    getShop(history);
   }, []);
+
+  useEffect(() => {
+    setPage(getPage());
+  }, [params]);
+
+  function getPage(e, page) {
+    const search = new URLSearchParams(history.location.search);
+    if (!search.get("_page")) {
+      return 1;
+    }
+    return search.get("_page");
+  }
+
+  const handlePage = (e, pageVal) => {
+    const search = new URLSearchParams(history.location.search);
+    search.set("_page", pageVal);
+    history.push(`${history.location.pathname}?${search.toString()}`);
+    getShop(history);
+    setPage(pageVal);
+  };
 
   return (
     <>
       <Box className={classes.container}>
-        {shop ? (
-          shop.map((item, index) => <ShopCard item={item} key={index} />)
+        {shops ? (
+          shops.map((item, index) => (
+            <ShopCard item={item} key={index} history={history} />
+          ))
         ) : (
           <div className={classes.root}>
             <CircularProgress color="secondary" />
           </div>
         )}
+      </Box>
+      <Box className={classes.pagination}>
+        <Pagination
+          count={pagination}
+          onChange={handlePage}
+          page={+page}
+          color="primary"
+        />
       </Box>
     </>
   );

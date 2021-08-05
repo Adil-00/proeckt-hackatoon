@@ -12,7 +12,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import { IconButton } from "@material-ui/core";
 import { useContext } from "react";
 import { shopContext } from "../../context/ShopContext";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { userContext } from "../../context/UserContext";
 
@@ -30,6 +30,7 @@ const useStyles = makeStyles({
 export default function ShopCard({ item }) {
   const classes = useStyles();
   const { deleteShop, editShop } = useContext(shopContext);
+  const history = useHistory();
   const { addAndDeleteProductsInCart, checkProductInCart } =
     useContext(userContext);
 
@@ -65,7 +66,7 @@ export default function ShopCard({ item }) {
             <EditIcon />
           </IconButton>
         </Link>
-        <IconButton onClick={() => deleteShop(item.id)}>
+        <IconButton onClick={() => deleteShop(item.id, history)}>
           <DeleteIcon />
         </IconButton>
         <IconButton
