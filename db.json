@@ -9,6 +9,22 @@
       "id": 2
     },
     {
+      "title": "футболка",
+      "image": "https://mdmgifts.ru/storage/app/media/sync/oasiscatalog/original/bbbb92ec28d85900.jpg",
+      "category": "футболки",
+      "description": "желтая XS, S, M, L, XL",
+      "price": "350",
+      "id": 3
+    },
+    {
+      "title": "коньки",
+      "image": "https://images.ru.prom.st/824933679_w640_h640_konki-40-razmer.jpg",
+      "category": "зимний",
+      "description": "37,38,39.",
+      "price": "2500",
+      "id": 4
+    },
+    {
       "title": "Лыжи",
       "category": "Зимний спорт",
       "description": "Комфортабельные, саморегулирующиеся",
