@@ -9,10 +9,9 @@ import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import MenuIcon from "@material-ui/icons/Menu";
+import "./Header.css";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
-import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useState } from "react";
@@ -20,6 +19,11 @@ import { Link, useHistory } from "react-router-dom";
 import { useContext } from "react";
 import { shopContext } from "../../context/ShopContext";
 import { userContext } from "../../context/UserContext";
+import { MeetingRoom } from "@material-ui/icons";
+import fire from "../../fire";
+import { authContext } from "../Auth/AuthContextProvider";
+import { ADMIN } from "../../Helpers/constans";
+import EditIcon from "@material-ui/icons/Edit";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -97,6 +101,10 @@ export default function Header() {
   const { getShop } = useContext(shopContext);
   const { productsCountInCart } = useContext(userContext);
 
+  const {
+    user: { email },
+  } = useContext(authContext);
+
   const heandleSerch = (e) => {
     let search = new URLSearchParams(history.location.search);
     search.set("q", e.target.value);
@@ -122,6 +130,15 @@ export default function Header() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const goLogin = () => {
+    history.push("/auth");
+    handleMenuClose();
+  };
+
+  const handleLogout = () => {
+    fire.auth().signOut();
+  };
+
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -133,8 +150,7 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={goLogin}>Регистрация</MenuItem>
     </Menu>
   );
 
@@ -149,36 +165,29 @@ export default function Header() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
+      {email ? (
+        <div>
+          <IconButton onClick={handleLogout}>
+            <MeetingRoom color="primary" className="white">
+              Выйти из аккаунта
+            </MeetingRoom>
+          </IconButton>
+        </div>
+      ) : (
         <IconButton
+          edge="end"
           aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
+          aria-controls={menuId}
           aria-haspopup="true"
+          onClick={handleProfileMenuOpen}
           color="inherit"
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
-      </MenuItem>
+      )}
     </Menu>
   );
-  console.log(productsCountInCart);
+
   return (
     <div className={classes.grow}>
       <AppBar position="static">
@@ -192,7 +201,7 @@ export default function Header() {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            McLaren's Shop
+            <Link to="">McLAREN'S SHOP</Link>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -210,24 +219,43 @@ export default function Header() {
             />
           </div>
           <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <Link to="/cart">
-              <IconButton className={classes.sectionDesktop}>
-                <Badge badgeContent={productsCountInCart} color="secondary">
-                  <ShoppingCartIcon />
-                </Badge>
-              </IconButton>
-            </Link>
+          <div
+            className={classes.sectionDesktop}
+            style={{ display: "flex", alignItems: "center" }}
+          >
             <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
+              onClick={() => history.push("/cart")}
+              className={classes.sectionDesktop}
             >
-              <AccountCircle />
+              <Badge badgeContent={productsCountInCart} color="secondary">
+                <ShoppingCartIcon />
+              </Badge>
             </IconButton>
+            {email === ADMIN ? (
+              <Link to="/add">
+                <EditIcon></EditIcon>
+              </Link>
+            ) : null}
+            {email ? (
+              <div>
+                {" "}
+                <span>{email}</span>
+                <IconButton onClick={handleLogout}>
+                  <MeetingRoom className="white">Выйти из аккаунта</MeetingRoom>
+                </IconButton>
+              </div>
+            ) : (
+              <IconButton
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+            )}
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
