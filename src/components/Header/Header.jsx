@@ -24,6 +24,8 @@ import { userContext } from "../../context/UserContext";
 import { MeetingRoom } from "@material-ui/icons";
 import fire from "../../fire";
 import { authContext } from "../Auth/AuthContextProvider";
+import { ADMIN } from "../../Helpers/constans";
+import EditIcon from "@material-ui/icons/Edit";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -201,7 +203,7 @@ export default function Header() {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link to="">McLaren's Shop</Link>
+            <Link to="">McLAREN'S SHOP</Link>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -219,7 +221,10 @@ export default function Header() {
             />
           </div>
           <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
+          <div
+            className={classes.sectionDesktop}
+            style={{ display: "flex", alignItems: "center" }}
+          >
             <Link to="/cart">
               <IconButton className={classes.sectionDesktop}>
                 <Badge badgeContent={productsCountInCart} color="secondary">
@@ -227,8 +232,14 @@ export default function Header() {
                 </Badge>
               </IconButton>
             </Link>
+            {email === ADMIN ? (
+              <Link to="/add">
+                <EditIcon></EditIcon>
+              </Link>
+            ) : null}
             {email ? (
               <div>
+                {" "}
                 <span>{email}</span>
                 <IconButton onClick={handleLogout}>
                   <MeetingRoom className="white">Выйти из аккаунта</MeetingRoom>
