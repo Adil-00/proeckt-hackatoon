@@ -1,6 +1,6 @@
 import { Button } from "@material-ui/core";
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import {  useHistory } from "react-router-dom";
 import "./Auth.css";
 import { authContext } from "./AuthContextProvider";
 
@@ -19,6 +19,25 @@ const Login = () => {
     user,
   } = useContext(authContext);
 
+  const history = useHistory();
+
+  const handleSignIn = async () => {
+    try {
+      await handleLogin();
+      history.push("/");
+    } catch {
+      return alert("Заполните верно формы");
+    }
+  };
+
+  const handleRegist = async () => {
+    try {
+      await handleSignUp();
+      history.push("/");
+    } catch {
+      return alert("Заполните верно формы");
+    }
+  };
   return (
     <section className="login">
       <div className="loginContainer">
@@ -45,7 +64,7 @@ const Login = () => {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={handleLogin}
+                onClick={handleSignIn}
               >
                 Войти
               </Button>
@@ -62,7 +81,7 @@ const Login = () => {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={handleSignUp}
+                onClick={handleRegist}
               >
                 Регистрация
               </Button>

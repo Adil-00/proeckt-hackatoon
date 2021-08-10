@@ -7,7 +7,7 @@ import ShopContextProvider from "./context/ShopContext";
 import UserContextProvider from "./context/UserContext";
 import Cart from "./components/Cart/Cart";
 import AuthContextProvider from "./components/Auth/AuthContextProvider";
-import Auth from "./components/Auth/Auth";
+import Login from "./components/Auth/Login";
 
 const Routes = () => {
   return (
@@ -20,7 +20,7 @@ const Routes = () => {
               <Route exact path="/add" component={Add} />
               <Route exact path="/edit" component={Edit} />
               <Route exact path="/cart" component={Cart} />
-              <Route exact path="/auth" component={Auth} />
+              <Route exact path="/auth" component={Login} />
             </Switch>
           </BrowserRouter>
         </ShopContextProvider>

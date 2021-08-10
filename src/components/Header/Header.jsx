@@ -12,8 +12,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 import "./Header.css";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
-import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useState } from "react";
@@ -225,13 +223,14 @@ export default function Header() {
             className={classes.sectionDesktop}
             style={{ display: "flex", alignItems: "center" }}
           >
-            <Link to="/cart">
-              <IconButton className={classes.sectionDesktop}>
-                <Badge badgeContent={productsCountInCart} color="secondary">
-                  <ShoppingCartIcon />
-                </Badge>
-              </IconButton>
-            </Link>
+            <IconButton
+              onClick={() => history.push("/cart")}
+              className={classes.sectionDesktop}
+            >
+              <Badge badgeContent={productsCountInCart} color="secondary">
+                <ShoppingCartIcon />
+              </Badge>
+            </IconButton>
             {email === ADMIN ? (
               <Link to="/add">
                 <EditIcon></EditIcon>

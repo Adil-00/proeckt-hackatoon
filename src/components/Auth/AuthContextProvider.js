@@ -60,7 +60,7 @@ const AuthContextProvider = ({ children }) => {
   };
 
   const authListener = () => {
-    fire.auth().onAuthStateChanged((user) => {
+    return fire.auth().onAuthStateChanged((user) => {
       if (user) {
         clearInputs();
         setUser(user);
@@ -71,7 +71,11 @@ const AuthContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    authListener();
+    const unsubscribe = authListener();
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   const values = {

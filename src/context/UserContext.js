@@ -81,7 +81,6 @@ const UserContextProvider = ({ children }) => {
       };
     }
     let newCart = cart.products.filter((item) => item.product.id === id);
-
     return newCart.length > 0 ? true : false;
   }
 

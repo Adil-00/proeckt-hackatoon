@@ -9,6 +9,7 @@ const Cart = () => {
 
   useEffect(() => {
     getCart();
+    console.log("cart mounted");
   }, []);
 
   const history = useHistory();
