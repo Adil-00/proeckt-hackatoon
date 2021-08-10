@@ -8,7 +8,6 @@ import InputBase from "@material-ui/core/InputBase";
 import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
@@ -20,7 +19,9 @@ import { Link, useHistory } from "react-router-dom";
 import { useContext } from "react";
 import { shopContext } from "../../context/ShopContext";
 import { userContext } from "../../context/UserContext";
-
+import Sidebar from "./Sidebar";
+import Logo from "../../img/logo.png";
+import "./Header.css";
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -178,7 +179,6 @@ export default function Header() {
       </MenuItem>
     </Menu>
   );
-  console.log(productsCountInCart);
   return (
     <div className={classes.grow}>
       <AppBar position="static">
@@ -189,10 +189,10 @@ export default function Header() {
             color="inherit"
             aria-label="open drawer"
           >
-            <MenuIcon />
+            <Sidebar getShop={getShop} />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            McLaren's Shop
+          <Typography className={classes.title} noWrap>
+            <img className="logo" src={Logo} alt="" />
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>

@@ -5,7 +5,7 @@ import Add from "./components/Admin/Add";
 import Home from "./components/Home/Home";
 import ShopContextProvider from "./context/ShopContext";
 import UserContextProvider from "./context/UserContext";
-import Cart from "./components/Cart/Cart";
+import CardNav from "./components/Cart/CardNav";
 
 const Routes = () => {
   return (
@@ -16,7 +16,7 @@ const Routes = () => {
             <Route exact path="/" component={Home} />
             <Route exact path="/add" component={Add} />
             <Route exact path="/edit" component={Edit} />
-            <Route exact path="/cart" component={Cart} />
+            <Route exact path="/cart" component={CardNav} />
           </Switch>
         </BrowserRouter>
       </ShopContextProvider>

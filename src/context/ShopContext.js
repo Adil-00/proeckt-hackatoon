@@ -16,7 +16,7 @@ const reduce = (state = INIT_STATE, action) => {
       return {
         ...state,
         shops: action.payload.data,
-        pagination: Math.ceil(action.payload.headers["x-total-count"] / 2),
+        pagination: Math.ceil(action.payload.headers["x-total-count"] / 12),
       };
 
     case "SHOP_EDIT":
@@ -34,7 +34,7 @@ const ShopContextProvider = ({ children }) => {
 
   const getShop = async (history) => {
     const search = new URLSearchParams(history.location.search);
-    search.set("_limit", 2);
+    search.set("_limit", 12);
     history.push(`${history.location.pathname}?${search.toString()}`);
 
     let data = await axios(`${API}/shop${window.location.search}`);

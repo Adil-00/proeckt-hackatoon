@@ -31,23 +31,26 @@ export default function Add() {
   const classes = useStyles();
   const [inpValue, setInpValue] = useState("");
   const history = useHistory();
+  const [category, setCatygory] = useState("");
   const handleChange = (e) => {
     let obj = {
       ...inpValue,
+      category,
       [e.target.name]: e.target.value,
     };
 
     setInpValue(obj);
   };
 
+  const handlevalueCategory = (e) => {
+    setCatygory(e.target.value.toLowerCase());
+  };
+
   const handleAdd = () => {
     shopAdd(inpValue, history);
 
-    setInpValue({
-      Name: "",
-      LastName: "",
-      Age: "",
-    });
+    setInpValue("");
+    setCatygory("");
   };
 
   return (
@@ -68,9 +71,9 @@ export default function Add() {
           multiline
         />
         <TextField
-          value={inpValue.category}
+          value={category}
           name="category"
-          onChange={handleChange}
+          onChange={handlevalueCategory}
           label="Category"
         />
         <TextField

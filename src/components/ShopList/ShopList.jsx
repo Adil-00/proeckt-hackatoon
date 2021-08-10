@@ -7,6 +7,7 @@ import ShopCard from "../ShopCard.jsx/ShopCard";
 import { Pagination } from "@material-ui/lab";
 import { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import AOS from "aos";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ShopList = () => {
+  AOS.init();
   let history = useHistory();
   const params = useParams();
   const { shops, getShop, pagination } = useContext(shopContext);
@@ -68,7 +70,9 @@ const ShopList = () => {
       <Box className={classes.container}>
         {shops ? (
           shops.map((item, index) => (
-            <ShopCard item={item} key={index} history={history} />
+            <div data-aos="flip-left">
+              <ShopCard item={item} key={index} history={history} />
+            </div>
           ))
         ) : (
           <div className={classes.root}>
