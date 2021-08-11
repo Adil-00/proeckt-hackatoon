@@ -39,20 +39,27 @@ export default function Edit() {
   const { edit, saveShop } = useContext(shopContext);
   const classes = useStyles();
   const [inpValue, setInpValue] = useState("");
+  const [category, setCatygory] = useState("");
   const history = useHistory();
   useEffect(() => {
     setInpValue(edit);
+    setCatygory(edit.category);
   }, [edit]);
 
   const handleChange = (e) => {
     let obj = {
       ...inpValue,
+      category,
       [e.target.name]: e.target.value,
     };
 
     setInpValue(obj);
   };
-  console.log(inpValue.id);
+
+  const handlevalueCategory = (e) => {
+    setCatygory(e.target.value.toLowerCase());
+  };
+
   const handleEdit = () => {
     saveShop(inpValue, inpValue.id, history);
 
@@ -84,9 +91,9 @@ export default function Edit() {
         />
         <p className={classes.p}>category</p>
         <TextField
-          value={inpValue.category}
+          value={category}
           name="category"
-          onChange={handleChange}
+          onChange={handlevalueCategory}
         />
         <p className={classes.p}>description</p>
         <TextField

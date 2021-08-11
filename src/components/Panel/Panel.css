@@ -1,0 +1,24 @@
+.panel__row {
+  max-width: 100vw;
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(196, 211, 58, 0.575);
+  display: flex;
+  justify-content: space-evenly;
+  height: 45px;
+  align-items: center;
+}
+
+.panel__button {
+  border: 1px solid black;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: blanchedalmond;
+}
+
+@media all and (max-width: 1080px) {
+  .panel {
+    display: none;
+  }
+}

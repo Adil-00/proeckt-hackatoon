@@ -1,0 +1,13 @@
+.cardAnimation {
+  animation: myEffect linear 0.3s;
+}
+
+@keyframes myEffect {
+  0% {
+    transform: translateX(360deg);
+  }
+
+  100% {
+    transform: translateX(0de);
+  }
+}

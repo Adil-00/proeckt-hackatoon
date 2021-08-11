@@ -9,7 +9,6 @@ import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import MenuIcon from "@material-ui/icons/Menu";
-import "./Header.css";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MoreIcon from "@material-ui/icons/MoreVert";
@@ -19,12 +18,14 @@ import { Link, useHistory } from "react-router-dom";
 import { useContext } from "react";
 import { shopContext } from "../../context/ShopContext";
 import { userContext } from "../../context/UserContext";
+import Sidebar from "./Sidebar";
+import Logo from "../../img/logo.png";
+import "./Header.css";
 import { MeetingRoom } from "@material-ui/icons";
 import fire from "../../fire";
 import { authContext } from "../Auth/AuthContextProvider";
 import { ADMIN } from "../../Helpers/constans";
 import EditIcon from "@material-ui/icons/Edit";
-
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -198,8 +199,10 @@ export default function Header() {
             color="inherit"
             aria-label="open drawer"
           >
-            <MenuIcon />
+            <Sidebar getShop={getShop} />
           </IconButton>
+          <Typography className={classes.title} noWrap>
+            <img className="logo" src={Logo} alt="" />
           <Typography className={classes.title} variant="h6" noWrap>
             <Link to="">McLAREN'S SHOP</Link>
           </Typography>
