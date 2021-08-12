@@ -1,8 +1,5 @@
 .footer {
-  background: no-repeat
-    url("https://phonoteka.org/uploads/posts/2021-04/1619222765_61-phonoteka_org-p-fon-dlya-prezentatsii-sportivnii-stil-62.jpg");
-  background-position: center;
-  background-size: cover;
+  background-color: rgba(31, 18, 18, 0.575);
   display: flex;
   align-items: center;
   position: relative;
