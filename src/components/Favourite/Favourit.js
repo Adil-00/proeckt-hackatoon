@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { shopContext } from "../../context/ShopContext";
-import Header from "../Header/Header";
 import Favourite from "./Favourite";
 
 const Favourit = () => {
@@ -18,7 +17,6 @@ const Favourit = () => {
 
   return (
     <>
-      <Header />
       <div className="container">
         {favourite
           ? favourite.map((item, index) => (

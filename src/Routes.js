@@ -7,10 +7,11 @@ import ShopContextProvider from "./context/ShopContext";
 import UserContextProvider from "./context/UserContext";
 import AuthContextProvider from "./components/Auth/AuthContextProvider";
 import Login from "./components/Auth/Login";
-import CardNav from "./components/Cart/CardNav";
 import Detail from "./components/Detail/Detail";
 import Favourit from "./components/Favourite/Favourit";
 import CreditCard from "./components/CreditCard/CreditCard";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 const Routes = () => {
   return (
@@ -18,16 +19,17 @@ const Routes = () => {
       <UserContextProvider>
         <ShopContextProvider>
           <BrowserRouter>
+            <Header />
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/add" component={Add} />
               <Route exact path="/edit" component={Edit} />
-              <Route exact path="/cart" component={CardNav} />
               <Route exact path="/auth" component={Login} />
               <Route exact path="/detail" component={Detail} />
               <Route exact path="/fav" component={Favourit} />
               <Route exact path="/credit" component={CreditCard} />
             </Switch>
+            <Footer />
           </BrowserRouter>
         </ShopContextProvider>
       </UserContextProvider>

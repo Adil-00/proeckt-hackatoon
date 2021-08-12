@@ -131,7 +131,12 @@ const ShopContextProvider = ({ children }) => {
     return newArr.length > 0 ? true : false;
   };
 
-  console.log(state.favourite);
+  const handleDelFav = () => {
+    state.favourite.map((item) => {
+      axios.delete(`${API}/favourite/${item.id}`);
+      console.log("yes");
+    });
+  };
 
   return (
     <shopContext.Provider
@@ -151,6 +156,7 @@ const ShopContextProvider = ({ children }) => {
         handleFavourite,
         checkFavourite,
         getFavourute,
+        handleDelFav,
       }}
     >
       {children}

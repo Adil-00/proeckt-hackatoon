@@ -105,7 +105,8 @@ export default function Header() {
   const [eventVal, setEventVal] = useState("");
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  const { getShop, quantity } = useContext(shopContext);
+  const { getShop, quantity, handleDelFav, getFavourute } =
+    useContext(shopContext);
   const { productsCountInCart } = useContext(userContext);
 
   const {
@@ -144,6 +145,8 @@ export default function Header() {
 
   const handleLogout = () => {
     fire.auth().signOut();
+    handleDelFav();
+    getFavourute();
   };
 
   const menuId = "primary-search-account-menu";
