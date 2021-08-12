@@ -8,7 +8,7 @@ import UserContextProvider from "./context/UserContext";
 import CardNav from "./components/Cart/CardNav";
 import AuthContextProvider from "./components/Auth/AuthContextProvider";
 import Login from "./components/Auth/Login";
-
+import CreditCard from "./components/CreditCard/CreditCard";
 
 const Routes = () => {
   return (
@@ -20,8 +20,9 @@ const Routes = () => {
               <Route exact path="/" component={Home} />
               <Route exact path="/add" component={Add} />
               <Route exact path="/edit" component={Edit} />
-                <Route exact path="/cart" component={CardNav} />
+              <Route exact path="/cart" component={CardNav} />
               <Route exact path="/auth" component={Login} />
+              <Route exact path="/credit" component={CreditCard} />
             </Switch>
           </BrowserRouter>
         </ShopContextProvider>
