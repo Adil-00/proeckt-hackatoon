@@ -5,26 +5,31 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import { Icon, IconButton } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
 import { useContext } from "react";
 import { shopContext } from "../../context/ShopContext";
 import { Link, useHistory } from "react-router-dom";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { userContext } from "../../context/UserContext";
 import "./ShopCard.css";
-import { MoreHorizOutlined, Share } from "@material-ui/icons";
+import { ADMIN } from "../../Helpers/constans";
+import { authContext } from "../Auth/AuthContextProvider";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const useStyles = makeStyles({
   root: {
     marginTop: "5vh",
     width: "290px",
-    height: "350px",
   },
-
+  cardTitle: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-end",
+    height: "150px",
+  },
   media: {
     height: "150px",
     backgroundSize: "contain",
@@ -33,39 +38,66 @@ const useStyles = makeStyles({
 
 export default function ShopCard({ item }) {
   const classes = useStyles();
-  const { deleteShop, editShop } = useContext(shopContext);
+  const {
+    deleteShop,
+    editShop,
+    handleDetail,
+    handleFavourite,
+    checkFavourite,
+  } = useContext(shopContext);
   const history = useHistory();
   const { addAndDeleteProductsInCart, checkProductInCart } =
     useContext(userContext);
 
+  const {
+    user: { email },
+  } = useContext(authContext);
+
+  const test = (e) => {
+    console.log(e.target);
+  };
+
   return (
     <Card elevation={10} className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={item.image}
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {item.title}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {item.description}
-          </Typography>
-          <Typography gutterBottom variant="h5" component="h2">
-            {item.price} сом
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+      <Link to="/detail">
+        <CardActionArea onClick={() => handleDetail(item.id)}>
+          <CardMedia
+            className={classes.media}
+            image={item.image}
+            title="Contemplative Reptile"
+          />
+          <CardContent className={classes.cardTitle}>
+            <Typography gutterBottom variant="h5" component="h2">
+              {item.title}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {item.description}
+            </Typography>
+            <Typography gutterBottom variant="h5" component="h2">
+              {item.price} сом
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Link>
       <CardActions>
-        <Link to="/edit">
-          <IconButton onClick={() => editShop(item.id)}>
-            <EditIcon />
-          </IconButton>
-        </Link>
-        <IconButton onClick={() => deleteShop(item.id, history)}>
-          <DeleteIcon />
+        {email === ADMIN ? (
+          <>
+            <Link to="/edit">
+              <IconButton onClick={() => editShop(item.id)}>
+                <EditIcon />
+              </IconButton>
+            </Link>
+            <IconButton onClick={() => deleteShop(item.id, history)}>
+              <DeleteIcon />
+            </IconButton>
+          </>
+        ) : null}
+        <IconButton className="buy">Купить</IconButton>
+        <IconButton
+          onClick={() => handleFavourite(item.id)}
+          color={checkFavourite(item.id) ? "secondary" : "primary"}
+        >
+          <FavoriteIcon />
         </IconButton>
         <IconButton
           variant="contained"

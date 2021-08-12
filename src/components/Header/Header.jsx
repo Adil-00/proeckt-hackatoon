@@ -10,8 +10,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
-import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useState } from "react";
@@ -22,6 +20,13 @@ import { userContext } from "../../context/UserContext";
 import Sidebar from "./Sidebar";
 import Logo from "../../img/logo.png";
 import "./Header.css";
+import { MeetingRoom } from "@material-ui/icons";
+import fire from "../../fire";
+import { authContext } from "../Auth/AuthContextProvider";
+import { ADMIN } from "../../Helpers/constans";
+import EditIcon from "@material-ui/icons/Edit";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -35,6 +40,11 @@ const useStyles = makeStyles((theme) => ({
       display: "block",
     },
   },
+
+  white: {
+    color: "white",
+  },
+
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -95,8 +105,12 @@ export default function Header() {
   const [eventVal, setEventVal] = useState("");
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  const { getShop } = useContext(shopContext);
+  const { getShop, quantity } = useContext(shopContext);
   const { productsCountInCart } = useContext(userContext);
+
+  const {
+    user: { email },
+  } = useContext(authContext);
 
   const heandleSerch = (e) => {
     let search = new URLSearchParams(history.location.search);
@@ -123,6 +137,15 @@ export default function Header() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const goLogin = () => {
+    history.push("/auth");
+    handleMenuClose();
+  };
+
+  const handleLogout = () => {
+    fire.auth().signOut();
+  };
+
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -134,8 +157,7 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={goLogin}>Регистрация</MenuItem>
     </Menu>
   );
 
@@ -150,35 +172,29 @@ export default function Header() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
+      {email ? (
+        <div>
+          <IconButton onClick={handleLogout}>
+            <MeetingRoom color="primary" className="white">
+              Выйти из аккаунта
+            </MeetingRoom>
+          </IconButton>
+        </div>
+      ) : (
         <IconButton
+          edge="end"
           aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
+          aria-controls={menuId}
           aria-haspopup="true"
+          onClick={handleProfileMenuOpen}
           color="inherit"
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
-      </MenuItem>
+      )}
     </Menu>
   );
+  console.log(quantity);
   return (
     <div className={classes.grow}>
       <AppBar position="static">
@@ -210,24 +226,50 @@ export default function Header() {
             />
           </div>
           <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <Link to="/cart">
-              <IconButton className={classes.sectionDesktop}>
-                <Badge badgeContent={productsCountInCart} color="secondary">
-                  <ShoppingCartIcon />
+          <div
+            className={classes.sectionDesktop}
+            style={{ display: "flex", alignItems: "center" }}
+          >
+            <Link to="/fav">
+              <IconButton className={classes.white}>
+                <Badge badgeContent={quantity} color="secondary">
+                  <FavoriteIcon />
                 </Badge>
               </IconButton>
             </Link>
             <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
+              onClick={() => history.push("/cart")}
+              className={classes.sectionDesktop}
             >
-              <AccountCircle />
+              <Badge badgeContent={productsCountInCart} color="secondary">
+                <ShoppingCartIcon />
+              </Badge>
             </IconButton>
+            {email === ADMIN ? (
+              <Link to="/add">
+                <EditIcon></EditIcon>
+              </Link>
+            ) : null}
+            {email ? (
+              <div>
+                {" "}
+                <span>{email}</span>
+                <IconButton onClick={handleLogout}>
+                  <MeetingRoom className="white">Выйти из аккаунта</MeetingRoom>
+                </IconButton>
+              </div>
+            ) : (
+              <IconButton
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+            )}
           </div>
           <div className={classes.sectionMobile}>
             <IconButton

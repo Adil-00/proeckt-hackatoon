@@ -18,7 +18,7 @@ const SlideShow = () => {
               background: `url(${slideImages[0]}) no-repeat center `,
               width: "100%",
               height: "70vh",
-              backgroundSize: "contein",
+              backgroundSize: "contain",
             }}
           ></div>
         </div>

@@ -3,3 +3,12 @@
   width: 100%;
   height: 5vh;
 }
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+.white {
+  color: white;
+}
