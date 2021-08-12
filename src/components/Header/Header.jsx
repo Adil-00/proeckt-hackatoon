@@ -27,6 +27,7 @@ import { ADMIN } from "../../Helpers/constans";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
 import AddIcon from "@material-ui/icons/Add";
+import { Avatar } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -105,9 +106,9 @@ export default function Header() {
   const [eventVal, setEventVal] = useState("");
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const { productsCountInCart, buyProduct } = useContext(userContext);
   const { getShop, quantity, handleDelFav, getFavourute } =
     useContext(shopContext);
-  const { productsCountInCart } = useContext(userContext);
 
   const {
     user: { email },
@@ -145,6 +146,7 @@ export default function Header() {
 
   const handleLogout = () => {
     fire.auth().signOut();
+    buyProduct();
     handleDelFav();
     getFavourute();
   };
@@ -160,7 +162,11 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={goLogin}>Регистрация</MenuItem>
+      {email ? (
+        <MenuItem>E-mail: {email}</MenuItem>
+      ) : (
+        <MenuItem onClick={goLogin}>Регистрация</MenuItem>
+      )}
     </Menu>
   );
 
@@ -255,16 +261,18 @@ export default function Header() {
             </IconButton>
             {email === ADMIN ? (
               <div>
-                {" "}
-                <Link to="/add">
-                  <AddIcon></AddIcon>
-                </Link>{" "}
+                <IconButton>
+                  <Link to="/add">
+                    <AddIcon className="white" />
+                  </Link>
+                </IconButton>
               </div>
             ) : null}
             {email ? (
-              <div>
-                {" "}
-                <span style={{ marginLeft: "5px" }}>{email}</span>
+              <div style={{ display: "flex" }}>
+                <IconButton onClick={handleProfileMenuOpen}>
+                  <Avatar>{email.slice(0, 1).toUpperCase()}</Avatar>
+                </IconButton>
                 <IconButton onClick={handleLogout}>
                   <MeetingRoom className="white">Выйти из аккаунта</MeetingRoom>
                 </IconButton>

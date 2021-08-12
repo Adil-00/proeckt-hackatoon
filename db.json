@@ -1,12 +1,52 @@
 {
   "favourite": [
     {
+      "title": "Лыжи",
+      "category": "Зимний",
+      "description": "Комфортабельные, саморегулирующиеся",
+      "price": "15000",
+      "image": "https://static4.depositphotos.com/1003531/374/v/600/depositphotos_3749144-stock-illustration-ski-and-ski-sticks.jpg",
+      "id": 7
+    },
+    {
+      "title": "коньки",
+      "image": "https://images.ru.prom.st/824933679_w640_h640_konki-40-razmer.jpg",
+      "category": "зимний",
+      "description": "37,38,39.",
+      "price": "2500",
+      "id": 4
+    },
+    {
+      "title": "футболка",
+      "image": "https://mdmgifts.ru/storage/app/media/sync/oasiscatalog/original/bbbb92ec28d85900.jpg",
+      "category": "футболка",
+      "description": "желтая XS, S, M, L, XL",
+      "price": "350",
+      "id": 3
+    },
+    {
+      "category": "снаряды",
+      "title": "штанга",
+      "image": "https://im0-tub-ru.yandex.net/i?id=10e49234bb22b0f9355202aab75a0a11&n=13",
+      "description": "атлетические",
+      "price": "9000",
+      "id": 2
+    },
+    {
       "category": "футболка",
       "image": "https://all-t-shirts.ru/files/1474/1609/stingrays_0_0.jpg",
       "title": "Футболка",
       "description": "S,L,M,XL,XXL",
       "price": "1000",
       "id": 10
+    },
+    {
+      "category": "шорты",
+      "title": "Шорты",
+      "image": "https://ae01.alicdn.com/kf/Hdec3cde5c56443c382c5e13f97042a37g/2020.jpg",
+      "description": "Женские",
+      "price": "1499",
+      "id": 9
     }
   ],
   "shop": [
