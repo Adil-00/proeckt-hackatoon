@@ -1,4 +1,4 @@
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import { userContext } from "../../context/UserContext";
 import CreditCardTwoToneIcon from "@material-ui/icons/CreditCardTwoTone";
 import "./CreditCard.css";
+import { Alert } from "@material-ui/lab";
 
 const CreditCard = () => {
   const [focus, setFocus] = useState("");
@@ -70,7 +71,17 @@ const CreditCard = () => {
   };
 
   return (
-    <div className="content">
+    <div className="content content-form">
+      <Typography
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+        variant="h2"
+        gutterBottom
+      >
+        Форма оплаты
+      </Typography>
       <Cards
         number={inpValue.number}
         name={inpValue.name}
@@ -78,7 +89,7 @@ const CreditCard = () => {
         cvc={inpValue.cvc}
         focused={focus}
       />
-      <form>
+      <form className="credit-form">
         <input
           type="number"
           name="number"
@@ -116,16 +127,26 @@ const CreditCard = () => {
         />
       </form>
       {handler ? (
-        <Button
-          endIcon={<CreditCardTwoToneIcon />}
-          variant="contained"
-          onClick={handleClick}
-          color="secondary"
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "2vh",
+          }}
         >
-          Оплатить
-        </Button>
+          <Button
+            endIcon={<CreditCardTwoToneIcon />}
+            variant="contained"
+            onClick={handleClick}
+            color="secondary"
+          >
+            Оплатить
+          </Button>
+        </div>
       ) : (
-        <div>Заполните все поля</div>
+        <div className="credit-form" style={{ marginBottom: "2vh" }}>
+          <Alert severity="error">Заполните все поля</Alert>
+        </div>
       )}
     </div>
   );
