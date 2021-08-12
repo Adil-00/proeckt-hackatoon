@@ -207,7 +207,7 @@ export default function Header() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="sticky" style={{ background: '#2E3B55' }}>
         <Toolbar>
           <IconButton
             edge="start"

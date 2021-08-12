@@ -105,21 +105,31 @@ const Cart = () => {
             </div>
           </TableContainer>
         ) : (
-          <Typography
+          <div
             style={{
               display: "flex",
-              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center",
             }}
-            variant="h2"
-            gutterBottom
           >
-            Корзина пуста
-          </Typography>
+            <Typography variant="h2" gutterBottom>
+              Корзина пуста
+            </Typography>
+          </div>
         )
       ) : (
-        <Typography variant h2 gutterBottom>
-          Загрузка страницы...
-        </Typography>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+          s
+        >
+          <Typography variant="h2" gutterBottom>
+            Загрузка страницы
+          </Typography>
+        </div>
       )}
     </div>
   );
