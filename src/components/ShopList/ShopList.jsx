@@ -8,7 +8,7 @@ import { Pagination } from "@material-ui/lab";
 import { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import AOS from "aos";
-
+import "./ShopList.css";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -29,7 +29,13 @@ const useStyles = makeStyles((theme) => ({
   pagination: {
     display: "flex",
     justifyContent: "center",
-    margin: "5vh",
+    padding: "20px",
+  },
+
+  card: {
+    background:
+      "url(https://phonoteka.org/uploads/posts/2021-04/1619222765_61-phonoteka_org-p-fon-dlya-prezentatsii-sportivnii-stil-62.jpg)",
+    backgroundSize: "cover",
   },
 }));
 
@@ -66,7 +72,7 @@ const ShopList = () => {
   };
 
   return (
-    <>
+    <div className={classes.card}>
       <Box className={classes.container}>
         {shops ? (
           shops.map((item, index) => (
@@ -88,7 +94,7 @@ const ShopList = () => {
           color="primary"
         />
       </Box>
-    </>
+    </div>
   );
 };
 

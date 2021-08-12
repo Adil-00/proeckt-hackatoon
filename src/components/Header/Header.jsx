@@ -149,6 +149,7 @@ export default function Header() {
     buyProduct();
     handleDelFav();
     getFavourute();
+    console.log("yes");
   };
 
   const menuId = "primary-search-account-menu";
@@ -203,11 +204,10 @@ export default function Header() {
       )}
     </Menu>
   );
-  console.log(quantity);
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton
             edge="start"
