@@ -12,6 +12,7 @@ import Favourit from "./components/Favourite/Favourit";
 import CreditCard from "./components/CreditCard/CreditCard";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import Cart from "./components/Cart/Cart";
 
 const Routes = () => {
   return (
@@ -28,6 +29,7 @@ const Routes = () => {
               <Route exact path="/detail" component={Detail} />
               <Route exact path="/fav" component={Favourit} />
               <Route exact path="/credit" component={CreditCard} />
+              <Route exact path="/cart" component={Cart} />
             </Switch>
             <Footer />
           </BrowserRouter>

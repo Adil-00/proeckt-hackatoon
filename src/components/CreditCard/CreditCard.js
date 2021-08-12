@@ -53,10 +53,10 @@ const CreditCard = () => {
       inpValue.name.length > 0
     ) {
       setHandler(true);
-      console.log("true");
+      // console.log("true");
     } else {
       setHandler(false);
-      console.log("false");
+      // console.log("false");
     }
   }
 
@@ -70,7 +70,7 @@ const CreditCard = () => {
   };
 
   return (
-    <div>
+    <div className="content">
       <Cards
         number={inpValue.number}
         name={inpValue.name}

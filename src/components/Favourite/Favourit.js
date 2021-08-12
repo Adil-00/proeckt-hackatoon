@@ -16,7 +16,7 @@ const Favourit = () => {
   }, []);
 
   return (
-    <>
+    <div className="content">
       <div className="container">
         {favourite
           ? favourite.map((item, index) => (
@@ -30,7 +30,7 @@ const Favourit = () => {
             ))
           : null}
       </div>
-    </>
+    </div>
   );
 };
 
