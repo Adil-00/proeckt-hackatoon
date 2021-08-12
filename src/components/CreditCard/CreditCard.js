@@ -18,6 +18,22 @@ const CreditCard = () => {
   });
 
   function handleInpValue(e) {
+    if (e.target.name === "number") {
+      if (e.target.value.toString().length > 16) {
+        return;
+      }
+    }
+    if (e.target.name === "cvc") {
+      if (e.target.value.toString().length > 3) {
+        return;
+      }
+    }
+    if (e.target.name === "expiry") {
+      if (e.target.value.toString().length > 4) {
+        return;
+      }
+    }
+
     let obj = {
       ...inpValue,
       [e.target.name]: e.target.value,
@@ -64,7 +80,7 @@ const CreditCard = () => {
       />
       <form>
         <input
-          type="tel"
+          type="number"
           name="number"
           placeholder="Card Number"
           value={inpValue.number}

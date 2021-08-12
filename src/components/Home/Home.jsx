@@ -8,11 +8,9 @@ import SlideShow from "../SlideShow/SlideShow";
 const Home = () => {
   return (
     <>
-      <Header />
       <SlideShow />
       <Panel />
       <ShopList />
-      <Footer />
     </>
   );
 };
