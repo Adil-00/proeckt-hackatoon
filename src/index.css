@@ -5,6 +5,8 @@
 body {
   margin: 0;
   padding: 0;
+  background: url("./img/627744.jpg") no-repeat center;
+  background-size: cover;
 }
 .container {
   display: flex;

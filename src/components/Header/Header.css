@@ -12,3 +12,7 @@ a {
 .white {
   color: white;
 }
+
+.container {
+  background-color: black;
+}
