@@ -14,9 +14,9 @@ const CreditCard = () => {
   const [focus, setFocus] = useState("");
   const [handler, setHandler] = useState(false);
   const [inpValue, setInpValue] = useState({
-    number: 0,
-    cvc: 0,
-    expiry: 0,
+    number: "",
+    cvc: "",
+    expiry: "",
     name: "",
   });
 
