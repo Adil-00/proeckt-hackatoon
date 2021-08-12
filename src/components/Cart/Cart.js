@@ -16,7 +16,7 @@ const Cart = () => {
 
   function handleClick() {
     buyProduct();
-    history.push("/");
+    history.push("/credit");
   }
 
   return (

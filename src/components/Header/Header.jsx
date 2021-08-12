@@ -8,7 +8,6 @@ import InputBase from "@material-ui/core/InputBase";
 import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MoreIcon from "@material-ui/icons/MoreVert";
@@ -25,7 +24,7 @@ import { MeetingRoom } from "@material-ui/icons";
 import fire from "../../fire";
 import { authContext } from "../Auth/AuthContextProvider";
 import { ADMIN } from "../../Helpers/constans";
-import EditIcon from "@material-ui/icons/Edit";
+import AddIcon from "@material-ui/icons/Add";
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -202,10 +201,12 @@ export default function Header() {
             <Sidebar getShop={getShop} />
           </IconButton>
           <Typography className={classes.title} noWrap>
-            <img className="logo" src={Logo} alt="" />
-          <Typography className={classes.title} variant="h6" noWrap>
-            <Link to="">McLAREN'S SHOP</Link>
+            <Link to="">
+              {" "}
+              <img className="logo" src={Logo} alt="" />
+            </Link>
           </Typography>
+
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -235,14 +236,17 @@ export default function Header() {
               </Badge>
             </IconButton>
             {email === ADMIN ? (
-              <Link to="/add">
-                <EditIcon></EditIcon>
-              </Link>
+              <div>
+                {" "}
+                <Link to="/add">
+                  <AddIcon></AddIcon>
+                </Link>{" "}
+              </div>
             ) : null}
             {email ? (
               <div>
                 {" "}
-                <span>{email}</span>
+                <span style={{ marginLeft: "5px" }}>{email}</span>
                 <IconButton onClick={handleLogout}>
                   <MeetingRoom className="white">Выйти из аккаунта</MeetingRoom>
                 </IconButton>
