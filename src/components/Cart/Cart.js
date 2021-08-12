@@ -1,7 +1,20 @@
+import {
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TableCell,
+  Paper,
+  withStyles,
+  Typography,
+  Button,
+} from "@material-ui/core";
 import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { userContext } from "../../context/UserContext";
 import { calcSubPrice, calcTotalPrice } from "../../Helpers/calcPrice";
+import CreditCardTwoToneIcon from "@material-ui/icons/CreditCardTwoTone";
 
 const Cart = () => {
   const { getCart, changeCountProductsInCart, cartData, buyProduct } =
@@ -11,6 +24,16 @@ const Cart = () => {
     getCart();
     console.log("cart mounted");
   }, []);
+
+  const StyledTableCell = withStyles((theme) => ({
+    head: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    body: {
+      fontSize: 14,
+    },
+  }))(TableCell);
 
   const history = useHistory();
 
@@ -23,27 +46,33 @@ const Cart = () => {
     <>
       {cartData ? (
         cartData.length ? (
-          <div className="cart">
-            <div>
-              <table>
-                <thead>
-                  <tr>
-                    <th>image</th>
-                    <th>Название</th>
-                    <th>Цена</th>
-                    <th>Кол-во</th>
-                    <th>Сумма</th>
-                  </tr>
-                </thead>
-                <tbody>
+          <TableContainer component={Paper}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>Фото товара</StyledTableCell>
+                    <StyledTableCell>Название</StyledTableCell>
+                    <StyledTableCell>Цена</StyledTableCell>
+                    <StyledTableCell>Кол-во</StyledTableCell>
+                    <StyledTableCell>Сумма</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
                   {cartData.map((item) => (
-                    <tr key={item.product.id}>
-                      <td>
+                    <TableRow key={item.product.id}>
+                      <TableCell>
                         <img width="50" src={item.product.image} />
-                      </td>
-                      <td>{item.product.title}</td>
-                      <td>{item.product.price}</td>
-                      <td>
+                      </TableCell>
+                      <TableCell>{item.product.title}</TableCell>
+                      <TableCell>{item.product.price}</TableCell>
+                      <TableCell>
                         <input
                           min="1"
                           type="number"
@@ -55,21 +84,42 @@ const Cart = () => {
                             )
                           }
                         />
-                      </td>
-                      <td>{calcSubPrice(item)}</td>
-                    </tr>
+                      </TableCell>
+                      <TableCell>{calcSubPrice(item)}</TableCell>
+                    </TableRow>
                   ))}
-                </tbody>
-              </table>
-              <h4>Общая сумма: {calcTotalPrice(cartData)} сом</h4>
-              <button onClick={handleClick}>Оплатить</button>
+                </TableBody>
+              </Table>
+              <Typography variant="h4" component="h2" gutterBottom>
+                Общая сумма: {calcTotalPrice(cartData)} сом
+              </Typography>
+              <Button
+                endIcon={<CreditCardTwoToneIcon />}
+                variant="contained"
+                onClick={handleClick}
+                color="secondary"
+                align="right"
+              >
+                Купить
+              </Button>
             </div>
-          </div>
+          </TableContainer>
         ) : (
-          <h1>Корзина пустая</h1>
+          <Typography
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+            variant="h2"
+            gutterBottom
+          >
+            Корзина пуста
+          </Typography>
         )
       ) : (
-        <h1>Loading...</h1>
+        <Typography variant h2 gutterBottom>
+          Загрузка страницы...
+        </Typography>
       )}
     </>
   );

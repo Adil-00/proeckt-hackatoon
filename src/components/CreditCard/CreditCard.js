@@ -4,13 +4,10 @@ import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import { useHistory } from "react-router-dom";
 import { userContext } from "../../context/UserContext";
+import CreditCardTwoToneIcon from "@material-ui/icons/CreditCardTwoTone";
 import "./CreditCard.css";
 
 const CreditCard = () => {
-  //   const [name, setName] = useState("");
-  //   const [number, setNumber] = useState("");
-  //   const [expiry, setExpiry] = useState("");
-  //   const [cvc, setCvc] = useState("");
   const [focus, setFocus] = useState("");
   const [handler, setHandler] = useState(false);
   const [inpValue, setInpValue] = useState({
@@ -103,7 +100,12 @@ const CreditCard = () => {
         />
       </form>
       {handler ? (
-        <Button onClick={handleClick} color="secondary">
+        <Button
+          endIcon={<CreditCardTwoToneIcon />}
+          variant="contained"
+          onClick={handleClick}
+          color="secondary"
+        >
           Оплатить
         </Button>
       ) : (
