@@ -10,6 +10,8 @@ import Login from "./components/Auth/Login";
 import CardNav from "./components/Cart/CardNav";
 import Detail from "./components/Detail/Detail";
 import Favourit from "./components/Favourite/Favourit";
+import AuthContextProvider from "./components/Auth/AuthContextProvider";
+import CreditCard from "./components/CreditCard/CreditCard";
 
 const Routes = () => {
   return (
@@ -25,6 +27,7 @@ const Routes = () => {
               <Route exact path="/auth" component={Login} />
               <Route exact path="/detail" component={Detail} />
               <Route exact path="/fav" component={Favourit} />
+              <Route exact path="/credit" component={CreditCard} />
             </Switch>
           </BrowserRouter>
         </ShopContextProvider>

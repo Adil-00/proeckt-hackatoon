@@ -24,9 +24,9 @@ import { MeetingRoom } from "@material-ui/icons";
 import fire from "../../fire";
 import { authContext } from "../Auth/AuthContextProvider";
 import { ADMIN } from "../../Helpers/constans";
-import EditIcon from "@material-ui/icons/Edit";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
+import AddIcon from "@material-ui/icons/Add";
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -195,6 +195,7 @@ export default function Header() {
     </Menu>
   );
   console.log(quantity);
+
   return (
     <div className={classes.grow}>
       <AppBar position="static">
@@ -208,8 +209,12 @@ export default function Header() {
             <Sidebar getShop={getShop} />
           </IconButton>
           <Typography className={classes.title} noWrap>
-            <img className="logo" src={Logo} alt="" />
+            <Link to="">
+              {" "}
+              <img className="logo" src={Logo} alt="" />
+            </Link>
           </Typography>
+
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -246,14 +251,17 @@ export default function Header() {
               </Badge>
             </IconButton>
             {email === ADMIN ? (
-              <Link to="/add">
-                <EditIcon></EditIcon>
-              </Link>
+              <div>
+                {" "}
+                <Link to="/add">
+                  <AddIcon></AddIcon>
+                </Link>{" "}
+              </div>
             ) : null}
             {email ? (
               <div>
                 {" "}
-                <span>{email}</span>
+                <span style={{ marginLeft: "5px" }}>{email}</span>
                 <IconButton onClick={handleLogout}>
                   <MeetingRoom className="white">Выйти из аккаунта</MeetingRoom>
                 </IconButton>
