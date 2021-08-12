@@ -5,9 +5,11 @@ import Add from "./components/Admin/Add";
 import Home from "./components/Home/Home";
 import ShopContextProvider from "./context/ShopContext";
 import UserContextProvider from "./context/UserContext";
-import CardNav from "./components/Cart/CardNav";
 import AuthContextProvider from "./components/Auth/AuthContextProvider";
 import Login from "./components/Auth/Login";
+import CardNav from "./components/Cart/CardNav";
+import Detail from "./components/Detail/Detail";
+import Favourit from "./components/Favourite/Favourit";
 import CreditCard from "./components/CreditCard/CreditCard";
 
 const Routes = () => {
@@ -22,6 +24,8 @@ const Routes = () => {
               <Route exact path="/edit" component={Edit} />
               <Route exact path="/cart" component={CardNav} />
               <Route exact path="/auth" component={Login} />
+              <Route exact path="/detail" component={Detail} />
+              <Route exact path="/fav" component={Favourit} />
               <Route exact path="/credit" component={CreditCard} />
             </Switch>
           </BrowserRouter>

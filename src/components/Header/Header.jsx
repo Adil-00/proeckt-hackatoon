@@ -24,6 +24,8 @@ import { MeetingRoom } from "@material-ui/icons";
 import fire from "../../fire";
 import { authContext } from "../Auth/AuthContextProvider";
 import { ADMIN } from "../../Helpers/constans";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+
 import AddIcon from "@material-ui/icons/Add";
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -38,6 +40,11 @@ const useStyles = makeStyles((theme) => ({
       display: "block",
     },
   },
+
+  white: {
+    color: "white",
+  },
+
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -98,7 +105,7 @@ export default function Header() {
   const [eventVal, setEventVal] = useState("");
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  const { getShop } = useContext(shopContext);
+  const { getShop, quantity } = useContext(shopContext);
   const { productsCountInCart } = useContext(userContext);
 
   const {
@@ -187,6 +194,7 @@ export default function Header() {
       )}
     </Menu>
   );
+  console.log(quantity);
 
   return (
     <div className={classes.grow}>
@@ -227,6 +235,13 @@ export default function Header() {
             className={classes.sectionDesktop}
             style={{ display: "flex", alignItems: "center" }}
           >
+            <Link to="/fav">
+              <IconButton className={classes.white}>
+                <Badge badgeContent={quantity} color="secondary">
+                  <FavoriteIcon />
+                </Badge>
+              </IconButton>
+            </Link>
             <IconButton
               onClick={() => history.push("/cart")}
               className={classes.sectionDesktop}

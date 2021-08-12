@@ -1,5 +1,14 @@
 .cardAnimation {
   animation: myEffect linear 0.3s;
+  position: relative;
+}
+
+.buy {
+  color: black;
+}
+
+.buy:hover {
+  color: red;
 }
 
 @keyframes myEffect {
