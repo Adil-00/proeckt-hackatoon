@@ -57,6 +57,10 @@ export default function ShopCard({ item }) {
     console.log(e.target);
   };
 
+  function handleClick() {
+    history.push("/credit");
+  }
+
   return (
     <Card elevation={10} className={classes.root}>
       <Link to="/detail">
@@ -92,7 +96,9 @@ export default function ShopCard({ item }) {
             </IconButton>
           </>
         ) : null}
-        <IconButton className="buy">Купить</IconButton>
+        <IconButton onClick={handleClick} className="buy">
+          Купить
+        </IconButton>
         <IconButton
           onClick={() => handleFavourite(item.id)}
           color={checkFavourite(item.id) ? "secondary" : "primary"}

@@ -43,7 +43,7 @@ const Cart = () => {
   }
 
   return (
-    <>
+    <div className="content">
       {cartData ? (
         cartData.length ? (
           <TableContainer component={Paper}>
@@ -121,7 +121,7 @@ const Cart = () => {
           Загрузка страницы...
         </Typography>
       )}
-    </>
+    </div>
   );
 };
 

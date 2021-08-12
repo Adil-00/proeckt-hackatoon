@@ -12,3 +12,7 @@ body {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+
+.content {
+  min-height: calc(100vh - 170px);
+}
