@@ -19,7 +19,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     height: "80vh",
   },
-
+  card: {
+    backgroundColor: "rgb(250, 250, 250, 0.1) !important",
+  },
   container: {
     display: "flex",
     flexWrap: "wrap",

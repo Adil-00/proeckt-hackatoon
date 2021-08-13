@@ -1,20 +1,28 @@
 {
   "favourite": [
     {
-      "title": "коньки",
-      "image": "https://images.ru.prom.st/824933679_w640_h640_konki-40-razmer.jpg",
-      "category": "зимний",
-      "description": "37,38,39.",
-      "price": "2500",
-      "id": 4
-    },
-    {
       "category": "футболка",
       "image": "https://all-t-shirts.ru/files/1474/1609/stingrays_0_0.jpg",
       "title": "Футболка",
       "description": "S,L,M,XL,XXL",
       "price": "1000",
       "id": 10
+    },
+    {
+      "title": "Лыжи",
+      "category": "Зимний",
+      "description": "Комфортабельные, саморегулирующиеся",
+      "price": "15000",
+      "image": "https://static4.depositphotos.com/1003531/374/v/600/depositphotos_3749144-stock-illustration-ski-and-ski-sticks.jpg",
+      "id": 7
+    },
+    {
+      "title": "Футболка адидас",
+      "category": "Футболка",
+      "description": "Хлопок, размеры(m, l, xl, xxl)",
+      "price": "669",
+      "image": "https://aknbarcin.b-cdn.net/products/2019/12/19/83135/e30aea19-91f0-4218-9ede-16424e8280d4_size530x530_quality90_cropCenter.jpg",
+      "id": 5
     }
   ],
   "shop": [
