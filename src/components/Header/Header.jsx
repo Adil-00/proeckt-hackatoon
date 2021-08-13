@@ -46,6 +46,13 @@ const useStyles = makeStyles((theme) => ({
   white: {
     color: "white",
   },
+
+  blue: {
+    color: "blue!important",
+    margin: "0!important",
+    padding: "20!important",
+  },
+
   back: {
     backgroundColor: "rgb(0,0,0,0)",
     boxShadow: "none",
@@ -88,6 +95,15 @@ const useStyles = makeStyles((theme) => ({
       width: "20ch",
     },
   },
+
+  cart: {
+    display: "block",
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+    },
+    color: "white",
+  },
+
   sectionDesktop: {
     display: "none",
     [theme.breakpoints.up("md")]: {
@@ -95,11 +111,18 @@ const useStyles = makeStyles((theme) => ({
     },
     color: "white",
   },
+
   sectionMobile: {
     display: "flex",
     [theme.breakpoints.up("md")]: {
       display: "none",
     },
+  },
+
+  menu: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
 }));
 
@@ -198,26 +221,51 @@ export default function Header() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      {email ? (
+      <div className={classes.menu}>
+        <div>{email ? <MenuItem>E-mail: {email}</MenuItem> : null}</div>
         <div>
-          <IconButton onClick={handleLogout}>
-            <MeetingRoom color="primary" className="white">
-              Выйти из аккаунта
-            </MeetingRoom>
+          {email ? (
+            <div>
+              <IconButton onClick={handleLogout}>
+                <MeetingRoom color="primary" className="white">
+                  Выйти из аккаунта
+                </MeetingRoom>
+              </IconButton>
+            </div>
+          ) : (
+            <IconButton
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
+              color="inherit"
+              className={classes.blue}
+            >
+              <AccountCircle />
+            </IconButton>
+          )}
+        </div>
+        <div>
+          <Link to="/fav">
+            <IconButton className={classes.blue}>
+              <Badge badgeContent={quantity} color="secondary">
+                <FavoriteIcon />
+              </Badge>
+            </IconButton>
+          </Link>
+        </div>
+        <div>
+          <IconButton
+            onClick={() => history.push("/cart")}
+            className={`${classes.cart} ${classes.blue}`}
+          >
+            <Badge badgeContent={productsCountInCart} color="secondary">
+              <ShoppingCartIcon />
+            </Badge>
           </IconButton>
         </div>
-      ) : (
-        <IconButton
-          edge="end"
-          aria-label="account of current user"
-          aria-controls={menuId}
-          aria-haspopup="true"
-          onClick={handleProfileMenuOpen}
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-      )}
+      </div>
     </Menu>
   );
 
@@ -260,13 +308,15 @@ export default function Header() {
             className={classes.sectionDesktop}
             style={{ display: "flex", alignItems: "center" }}
           >
-            <Link to="/fav">
-              <IconButton className={classes.white}>
-                <Badge badgeContent={quantity} color="secondary">
-                  <FavoriteIcon />
-                </Badge>
-              </IconButton>
-            </Link>
+            <div className="adaption">
+              <Link to="/fav">
+                <IconButton className={classes.white}>
+                  <Badge badgeContent={quantity} color="secondary">
+                    <FavoriteIcon />
+                  </Badge>
+                </IconButton>
+              </Link>
+            </div>
             <IconButton
               onClick={() => history.push("/cart")}
               className={classes.sectionDesktop}
@@ -284,27 +334,31 @@ export default function Header() {
                 </IconButton>
               </div>
             ) : null}
-            {email ? (
-              <div style={{ display: "flex" }}>
-                <IconButton onClick={handleProfileMenuOpen}>
-                  <Avatar>{email.slice(0, 1).toUpperCase()}</Avatar>
+            <div className="adaption">
+              {email ? (
+                <div style={{ display: "flex" }}>
+                  <IconButton onClick={handleProfileMenuOpen}>
+                    <Avatar>{email.slice(0, 1).toUpperCase()}</Avatar>
+                  </IconButton>
+                  <IconButton onClick={handleLogout}>
+                    <MeetingRoom className="white">
+                      Выйти из аккаунта
+                    </MeetingRoom>
+                  </IconButton>
+                </div>
+              ) : (
+                <IconButton
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  <AccountCircle />
                 </IconButton>
-                <IconButton onClick={handleLogout}>
-                  <MeetingRoom className="white">Выйти из аккаунта</MeetingRoom>
-                </IconButton>
-              </div>
-            ) : (
-              <IconButton
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            )}
+              )}
+            </div>
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
