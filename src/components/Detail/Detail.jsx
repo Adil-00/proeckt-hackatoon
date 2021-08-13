@@ -29,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
 
   paper: {
     position: "relative",
+
+    backgroundColor: "rgb(250, 250, 250, 0.7) !important",
   },
 
   root2: {
