@@ -76,11 +76,22 @@ const CreditCard = () => {
         style={{
           display: "flex",
           justifyContent: "center",
+          color: "white",
         }}
         variant="h2"
         gutterBottom
       >
-        Форма оплаты
+        <p
+          style={{
+            backgroundColor: "black",
+            fontWeight: "bold",
+            opacity: "0.7",
+            boxShadow: "0 0 50px black",
+            padding: "10px",
+          }}
+        >
+          Форма оплаты
+        </p>
       </Typography>
       <Cards
         number={inpValue.number}

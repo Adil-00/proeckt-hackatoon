@@ -31,6 +31,7 @@ import { Avatar } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
+    background: "transparent",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -44,6 +45,10 @@ const useStyles = makeStyles((theme) => ({
 
   white: {
     color: "white",
+  },
+  back: {
+    backgroundColor: "rgb(0,0,0,0)",
+    boxShadow: "none",
   },
 
   search: {
@@ -109,6 +114,7 @@ export default function Header() {
   const { productsCountInCart, buyProduct } = useContext(userContext);
   const { getShop, quantity, handleDelFav, getFavourute } =
     useContext(shopContext);
+  const [navbar, setNavbar] = useState(false);
 
   const {
     user: { email },
@@ -150,6 +156,16 @@ export default function Header() {
     handleDelFav();
     getFavourute();
   };
+
+  const changeNavBackground = () => {
+    if (window.scrollY >= 64) {
+      setNavbar(true);
+    } else {
+      setNavbar(false);
+    }
+  };
+
+  window.addEventListener("scroll", changeNavBackground);
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -206,8 +222,8 @@ export default function Header() {
   console.log(quantity);
 
   return (
-    <div className={classes.grow}>
-      <AppBar position="sticky" style={{ background: '#2E3B55' }}>
+    <div>
+      <AppBar className={navbar ? "navbar active" : classes.back}>
         <Toolbar>
           <IconButton
             edge="start"

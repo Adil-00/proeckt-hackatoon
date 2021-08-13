@@ -15,6 +15,7 @@ import { useHistory } from "react-router-dom";
 import { userContext } from "../../context/UserContext";
 import { calcSubPrice, calcTotalPrice } from "../../Helpers/calcPrice";
 import CreditCardTwoToneIcon from "@material-ui/icons/CreditCardTwoTone";
+import "./Cart.css";
 
 const Cart = () => {
   const { getCart, changeCountProductsInCart, cartData, buyProduct } =
@@ -99,6 +100,7 @@ const Cart = () => {
                 onClick={handleClick}
                 color="secondary"
                 align="right"
+                style={{ marginBottom: "2vh" }}
               >
                 Купить
               </Button>
@@ -113,7 +115,18 @@ const Cart = () => {
             }}
           >
             <Typography variant="h2" gutterBottom>
-              Корзина пуста
+              <p
+                style={{
+                  backgroundColor: "black",
+                  fontWeight: "bold",
+                  opacity: "0.7",
+                  boxShadow: "0 0 50px black",
+                  padding: "10px",
+                  color: "white",
+                }}
+              >
+                Корзина пуста
+              </p>
             </Typography>
           </div>
         )
