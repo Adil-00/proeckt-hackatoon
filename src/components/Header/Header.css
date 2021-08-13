@@ -17,3 +17,13 @@ a {
   background: rgb(0, 0, 0, 0.9);
   box-shadow: none;
 }
+
+.adaption {
+  display: block;
+}
+
+@media all and (max-width: 1080px) {
+  .adaption {
+    display: none;
+  }
+}

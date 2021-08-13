@@ -10,7 +10,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import MenuIcon from "@material-ui/icons/Menu";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import "./Sidebar.css";
 const useStyles = makeStyles({
   list: {
@@ -88,12 +88,18 @@ export default function Sidebar({ getShop }) {
     >
       <div className="sidebar__buttons">
         <List>
+          <Link to="/">
+            <button className="sidebar__button">На Главную</button>
+          </Link>
+        </List>
+        <Divider />
+        <List>
           <button
             onClick={handleOnClikCategory}
             className="sidebar__button"
             data-name="снаряды"
           >
-            снаряды
+            Снаряды
           </button>
         </List>
         <Divider />
@@ -103,7 +109,7 @@ export default function Sidebar({ getShop }) {
             className="sidebar__button"
             data-name="футболка"
           >
-            футболки
+            Футболки
           </button>
         </List>
         <Divider />
@@ -113,7 +119,7 @@ export default function Sidebar({ getShop }) {
             className="sidebar__button"
             data-name="зимний"
           >
-            зимний
+            Зимний спорт
           </button>
         </List>
         <Divider />
@@ -133,7 +139,7 @@ export default function Sidebar({ getShop }) {
             className="sidebar__button"
             data-name="все"
           >
-            все
+            Все
           </button>
         </List>
       </div>
