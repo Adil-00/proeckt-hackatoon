@@ -15,5 +15,10 @@ body {
 }
 
 .content {
-  min-height: calc(100vh - 170px);
+  min-height: calc(100vh - 105px);
+}
+
+.empty-style {
+  color: white;
+  margin-top: 20%;
 }

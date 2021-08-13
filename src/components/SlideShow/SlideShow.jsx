@@ -8,7 +8,7 @@ const slideImages = [
   "https://wallpaperhook.com/wp-content/uploads/2020/11/muhammad-ali-1920x1080-boxer-hd-From-WallpaperHook.com-For-Free.jpg",
   "https://wallpaperaccess.com/full/1535429.jpg",
   "https://kloop.kg/wp-content/uploads/2020/01/Ww-62kg-gold-Aisuluu-TYNYBEKOVA-KGZ-df.-Taybe-Mustafa-YUSEIN-BUL-6.jpg",
-  "https://c4.wallpaperflare.com/wallpaper/279/382/439/snowboarding-hd-wallpaper-preview.jpg",
+  "https://wallpaperaccess.com/full/935430.jpg",
 ];
 
 const SlideShow = () => {
@@ -20,7 +20,7 @@ const SlideShow = () => {
             style={{
               background: `url(${slideImages[0]}) no-repeat center `,
               width: "100%",
-              height: "90vh",
+              height: "85vh",
               backgroundSize: "cover",
             }}
           ></div>
@@ -30,7 +30,7 @@ const SlideShow = () => {
             style={{
               background: `url(${slideImages[1]}) no-repeat center`,
               width: "100%",
-              height: "90vh",
+              height: "85vh",
               backgroundSize: "cover",
             }}
           ></div>
@@ -40,7 +40,7 @@ const SlideShow = () => {
             style={{
               background: `url(${slideImages[2]}) no-repeat center`,
               width: "100%",
-              height: "90vh",
+              height: "85vh",
               backgroundSize: "cover",
             }}
           ></div>
@@ -50,7 +50,7 @@ const SlideShow = () => {
             style={{
               background: `url(${slideImages[3]}) no-repeat center `,
               width: "100%",
-              height: "90vh",
+              height: "85vh",
               backgroundSize: "cover",
               backgroundPositionY: "top",
             }}
@@ -61,7 +61,7 @@ const SlideShow = () => {
             style={{
               background: `url(${slideImages[4]}) no-repeat center `,
               width: "100%",
-              height: "90vh",
+              height: "85vh",
               backgroundSize: "cover",
               backgroundPositionY: "top",
             }}
@@ -72,7 +72,7 @@ const SlideShow = () => {
             style={{
               background: `url(${slideImages[5]}) no-repeat center `,
               width: "100%",
-              height: "90vh",
+              height: "85vh",
               backgroundSize: "cover",
               backgroundPositionY: "top",
             }}
