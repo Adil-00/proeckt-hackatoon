@@ -1,0 +1,12 @@
+.card {
+  background: url("https://phonoteka.org/uploads/posts/2021-04/1619222765_61-phonoteka_org-p-fon-dlya-prezentatsii-sportivnii-stil-62.jpg");
+}
+
+.MuiPaginationItem-root {
+  color: rgb(255 255 255 / 87%) !important;
+  background-color: black !important;
+}
+
+.MuiPaginationItem-textPrimary.Mui-selected {
+  background-color: #3f51b1 !important;
+}

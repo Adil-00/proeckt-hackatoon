@@ -23,7 +23,9 @@ const useStyles = makeStyles({
   root: {
     marginTop: "5vh",
     width: "290px",
+    backgroundColor: "rgba(250,250,250,0.4)",
   },
+
   cardTitle: {
     display: "flex",
     flexDirection: "column",

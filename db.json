@@ -1,5 +1,22 @@
 {
-  "favourite": [],
+  "favourite": [
+    {
+      "title": "коньки",
+      "image": "https://images.ru.prom.st/824933679_w640_h640_konki-40-razmer.jpg",
+      "category": "зимний",
+      "description": "37,38,39.",
+      "price": "2500",
+      "id": 4
+    },
+    {
+      "category": "футболка",
+      "image": "https://all-t-shirts.ru/files/1474/1609/stingrays_0_0.jpg",
+      "title": "Футболка",
+      "description": "S,L,M,XL,XXL",
+      "price": "1000",
+      "id": 10
+    }
+  ],
   "shop": [
     {
       "category": "снаряды",

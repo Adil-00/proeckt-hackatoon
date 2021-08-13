@@ -74,9 +74,11 @@ export default function Favourite({
         >
           <FavoriteIcon />
         </IconButton>
-        <IconButton className="buy" aria-label="share">
-          Купить
-        </IconButton>
+        <Link to="/credit">
+          <IconButton className="buy" aria-label="share">
+            Купить
+          </IconButton>
+        </Link>
       </CardActions>
     </Card>
   );

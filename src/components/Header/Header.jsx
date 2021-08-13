@@ -155,6 +155,7 @@ export default function Header() {
     buyProduct();
     handleDelFav();
     getFavourute();
+    console.log("yes");
   };
 
   const changeNavBackground = () => {
@@ -219,7 +220,6 @@ export default function Header() {
       )}
     </Menu>
   );
-  console.log(quantity);
 
   return (
     <div>

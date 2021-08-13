@@ -12,6 +12,7 @@ import { shopContext } from "../../context/ShopContext";
 import CancelIcon from "@material-ui/icons/Cancel";
 import { Link } from "react-router-dom";
 import "./Detail.css";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -75,11 +76,15 @@ const useStyles = makeStyles((theme) => ({
     width: "50%",
     height: "100%",
   },
+
+  icon: {
+    display: "flex",
+  },
 }));
 
 export default function Derail() {
   const classes = useStyles();
-  const { detail } = useContext(shopContext);
+  const { detail, handleFavourite, checkFavourite } = useContext(shopContext);
 
   return (
     <div className={classes.root}>
@@ -113,6 +118,18 @@ export default function Derail() {
               <div>
                 <span className={classes.static}>Price</span>
                 <span className={classes.dinamic}>{detail.price} сом</span>{" "}
+              </div>
+              <div className={classes.icon}>
+                <Link to="/credit">
+                  <IconButton className="buy">Купить</IconButton>
+                </Link>
+                <IconButton
+                  color={checkFavourite(detail.id) ? "secondary" : "primary"}
+                  onClick={() => handleFavourite(detail.id)}
+                  aria-label="add to favorites"
+                >
+                  <FavoriteIcon />
+                </IconButton>
               </div>
             </CardContent>
           </div>
